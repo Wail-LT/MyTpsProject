@@ -31,7 +31,17 @@ public:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
     UCameraComponent* Camera;
     
-    
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+    bool bSprinting;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+    float InputX;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+    float InputY;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+    float Direction;
     
     
 protected:
@@ -39,10 +49,21 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+    void MoveForward(float Axis);
+
+    void MoveRight(float Axis);
+
+private:
+
+    // Set the animation data from movement
+    void UpdateAnimationMovementData();
+
 
 };
